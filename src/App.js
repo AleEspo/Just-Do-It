@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/my-activities" element={<MyActivities />} />
+        <Route path="/my-activities/:id" element={<EditActivity />} />
       </Routes>
     </div>
   );
