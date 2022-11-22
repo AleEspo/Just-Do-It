@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 export function MyActivities (){
 
@@ -31,6 +32,8 @@ export function MyActivities (){
                 <p>{currentActivity.paticipants}</p>
                 <p>{currentActivity.accessibility}</p>
                 <p>{currentActivity.price}</p>
+                <Link to="/my-activities/{params}"> Edit Activity</Link>
+                {/* currentActivity.params? */}
             </div>
         })}
         </>
