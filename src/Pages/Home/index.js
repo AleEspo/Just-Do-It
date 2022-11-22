@@ -23,7 +23,6 @@ export function Home (){
         
         try {
             const response = await axios.post("https://ironrest.cyclic.app/just-do-it", {...form, })
-            console.log(response.data)
         } catch (err){
             console.log(err)
         }

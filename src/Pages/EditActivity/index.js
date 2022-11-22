@@ -21,6 +21,9 @@ export function EditActivity (){
             try {
                 const response = await axios.get(`https://ironrest.cyclic.app/just-do-it/${params.id}`
                 );
+
+                delete response.data._id
+
                 setForm(response.data);
             } catch (err) {
                 console.log(err)
@@ -39,8 +42,7 @@ export function EditActivity (){
         e.preventDefault()
         
         try {
-            const response = await axios.post("https://ironrest.cyclic.app/just-do-it", {...form, })
-            console.log(response.data)
+            const response = await axios.put(`https://ironrest.cyclic.app/just-do-it/${params.id}`, form)
         } catch (err){
             console.log(err)
         }
@@ -48,7 +50,7 @@ export function EditActivity (){
 
     return (
         <>
-            <h1>Edit Activity</h1>
+            <h1>Edit Activity: {form.activity}</h1>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="input-activity">Activity</label>
@@ -84,7 +86,7 @@ export function EditActivity (){
                 <label htmlFor="input-kids">Kid Friendly</label>
                 <input id="input-kids" type="boolean" name="kidFriendly" onChange={handleChange} value={form.kidFriendly}/>
 
-                <button>Submit Activity</button>
+                <button>Save Changes</button>
 
                 <Link to="/my-activities">Back to my Activites</Link>
 
