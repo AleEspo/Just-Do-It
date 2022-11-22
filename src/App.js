@@ -3,6 +3,7 @@
 import { Routes, Route } from "react-router-dom"
 import { Home} from "./Pages/Home"
 import { MyActivities } from "./Pages/MyActivities";
+import { MyActivity } from "./Pages/My Activity";
 import { EditActivity } from "./Pages/EditActivity"
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/my-activities" element={<MyActivities />} />
-        <Route path="/my-activities/:id" element={<EditActivity />} />
+        <Route path="/my-activities/view-activity/:id" element={<MyActivity />} />
+        <Route path="/my-activities/edit-activity/:id" element={<EditActivity />} />
       </Routes>
     </div>
   );
