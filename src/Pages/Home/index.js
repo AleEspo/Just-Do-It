@@ -54,8 +54,18 @@ export function Home (){
                 <input id="input-price" type="text" name="price" onChange={handleChange} value={form.price}/>
 
 
+                <label htmlFor="input-availability">Availability</label>
+                <input id="input-availability" type="text" name="availability" onChange={handleChange} value={form.availability}/>
+
+
+                <label htmlFor="input-duration">Duration</label>
+                <input id="input-duration" type="text" name="duration" onChange={handleChange} value={form.duration}/>
+
                 <label htmlFor="input-link">Link</label>
                 <input id="input-link" type="text" name="link" onChange={handleChange} value={form.link}/>
+
+                <label htmlFor="input-kids">Kid Friendly</label>
+                <input id="input-kids" type="boolean" name="kidFriendly" onChange={handleChange} value={form.kidFriendly}/>
 
                 <button>Submit Activity</button>
             </form>
