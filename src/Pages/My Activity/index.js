@@ -28,7 +28,7 @@ export function MyActivity() {
             <p>Type: {activity.type}</p>
             <p>Participants: {activity.participants}</p>
             <p>Duration: {activity.duration}</p>
-            {/* <p>Kids Friendly: {`${if ({activity.kidFriendly}) {return "yes"} else {return "no"}}`}</p> */}
+            <p>Kids Friendly: {activity.kidFriendly ? "Yes" : "No" }</p>
             <Link to="/my-activities">Back to my Activites</Link>
         </>
     )
