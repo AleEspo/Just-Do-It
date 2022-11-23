@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { SearchActivity } from "../../Components/SearchActivity";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import KitchenSinkExample from "../../Components/cards/kitchen-sink";
+import KitchenSinkExample from "../../Components/CardList";
 
 export function Home() {
   const [form, setForm] = useState({
@@ -14,7 +14,7 @@ export function Home() {
     participants: 1,
     price: 0,
     link: "",
-    kidFriendly: false
+    kidFriendly: false,
   });
 
   function handleChange(e) {
@@ -36,17 +36,19 @@ export function Home() {
         participants: 1,
         price: 0,
         link: "",
-        kidFriendly: false
-    })
+        kidFriendly: false,
+      });
     } catch (err) {
       console.log(err);
     }
   }
 
   const [activities, setActivities] = useState([]);
-  const [filteredActivities, setFilteredActivities] = useState([])
-  const myActivities = []
-  {console.log(myActivities)}
+  const [filteredActivities, setFilteredActivities] = useState([]);
+  const myActivities = [];
+  {
+    console.log(myActivities);
+  }
 
   useEffect(() => {
     async function fetchActivity() {
@@ -68,7 +70,6 @@ export function Home() {
   return (
     <>
       <h1>Just Do It</h1>
-      <KitchenSinkExample />
       <div>
         <h2>Form para adicionar atividades no API - mudar de pagina</h2>
         <form onSubmit={handleSubmit}>
