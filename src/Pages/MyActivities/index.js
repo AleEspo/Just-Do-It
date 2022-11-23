@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export function MyActivities() {
   const [activities, setActivities] = useState([]);
-  const [isDelete, setIsDeleted] = useState(false)
+  const [isDeleted, setIsDeleted] = useState(false)
 
   useEffect(() => {
     async function fetchActivity() {
@@ -21,7 +21,7 @@ export function MyActivities() {
     }
 
     fetchActivity();
-  }, [isDelete]);
+  }, [isDeleted]);
 
   // toast "Are you sure you want to delete?" min 2.37 pula pra -> 2.45 aula 18/11 sexta
 

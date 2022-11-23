@@ -5,7 +5,7 @@ import { Home} from "./Pages/Home"
 import { MyActivities } from "./Pages/MyActivities";
 import { MyActivity } from "./Pages/My Activity";
 import { EditActivity } from "./Pages/EditActivity"
-import {Page404} from "./Pages/Page404"
+import { Page404 } from "./Pages/Page404"
 
 function App() {
   return (
