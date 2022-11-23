@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { SearchActivity } from "../../Components/SearchActivity";
-import FormEdit from "../../Components/FormEdit";
+import FormEdit from "../../Components/Form";
+import CardList from "../../Components/Cards/CardList";
+import { GenRandom } from "../../Components/Cards/RandomCard";
 
 export function Home() {
   const [form, setForm] = useState({
@@ -17,7 +19,7 @@ export function Home() {
     kidFriendly: false,
   });
 
-  console.log(form)
+  console.log(form);
 
   // test function to create custom collections based on user IP
 
@@ -63,7 +65,6 @@ export function Home() {
     }
 
     setForm({ ...form, [e.target.name]: e.target.value });
-    console.log(e);
   }
 
   async function handleSubmit(e) {
@@ -125,6 +126,10 @@ export function Home() {
     }
 
     fetchActivity();
+  }, []);
+
+  useEffect(() => {
+    <GenRandom />;
   }, []);
 
   return (
@@ -269,34 +274,35 @@ export function Home() {
         <br />
         <Link to="/my-activities">My Favourites</Link>
       </div>
-
+    */}
       <div>
         <h2>Search activity (form para filtrar as atividades)</h2>
         <SearchActivity
           filteredFunction={setFilteredActivities}
           allActivities={activities}
         />
-      </div> */}
+      </div>
+      <div>
+        <button>Suggest a random activity</button>
+      </div>
       <div>
         <h2>All activities (lista de atividades do API)</h2>
         {filteredActivities.map((currentActivity) => {
           return (
             <div key={currentActivity._id}>
-              <h4>{currentActivity.activity}</h4>
-              <p>{currentActivity.type}</p>
-              <p>{currentActivity.paticipants}</p>
-              <p>{currentActivity.accessibility}</p>
-              <p>{currentActivity.price}</p>
-              <p>
-                Kids Friendly: {currentActivity.kidFriendly ? "Yes" : "No  "}
-              </p>
-              <button
-                onClick={() => {
-                  addToFavourite(currentActivity._id);
-                }}
-              >
-                Add to my favourites
-              </button>
+            <CardList
+              activity={currentActivity.activity}
+              type={currentActivity.type}
+              participants={currentActivity.participants}
+              duration={currentActivity.duration}
+              kidFriendly={currentActivity.kidFriendly}
+              accessibility={currentActivity.accessibility}
+              link={currentActivity.link}
+              view={`/my-activities/view-activity/${currentActivity._id}`}
+              fav={() => {
+                addToFavourite(currentActivity._id);
+              }}
+            />
             </div>
           );
         })}

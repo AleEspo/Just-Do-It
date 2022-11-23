@@ -1,9 +1,12 @@
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
+import {useParams} from "react-router-dom"
 
 
 function CardList(props) {
+  let {path} = useParams()
+
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Body>
@@ -20,7 +23,13 @@ function CardList(props) {
       <Card.Body>
         <Button variant="primary" href={props.view}>View</Button>
         <Button variant="success" href={props.edit}>Edit</Button>
-        <Button variant="danger" onClick={props.delete}>Delete</Button>
+        <Button variant="danger" onClick={()=>{
+          if(path==="/"){
+            return props.fav
+          } else {
+            return props.delete
+          }
+        }}>?</Button>
       </Card.Body>
     </Card>
   );
