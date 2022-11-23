@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { SearchActivity } from "../../Components/SearchActivity";
 
+
 export function Home() {
   const [form, setForm] = useState({
     activity: "",
@@ -116,6 +117,7 @@ export function Home() {
   return (
     <>
       <h1>Just Do It</h1>
+      <FormEdit />
       <div>
         <h2>Form para adicionar atividades no API - mudar de pagina</h2>
         <form onSubmit={handleSubmit}>
@@ -262,6 +264,7 @@ export function Home() {
         <br />
         <Link to="/my-activities">My Favourites</Link>
       </div>
+
       <div>
         <h2>Search activity (form para filtrar as atividades)</h2>
         <SearchActivity
