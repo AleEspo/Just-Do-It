@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CardList from "../../Components/CardList";
+import CardList from "../../Components/Cards/CardList";
 
 export function Favourite() {
   const [activities, setActivities] = useState([]);

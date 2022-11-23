@@ -3,9 +3,8 @@ import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
-import FormEdit from "../../Components/FormEdit";
+import FormEdit from "../../Components/Form";
 import { propTypes } from "react-bootstrap/esm/Image";
-
 
 // pra criar Toast apos de ser redirecionado, video de quarta 16/11 min 2.41 + 17/11 toda
 
@@ -26,7 +25,7 @@ export function EditActivity() {
     kidFriendly: false,
   });
 
-  console.log(form)
+  console.log(form);
 
   // outro setState pra colocar un titulo fixo em cima da pagina de edição; só const não funciona?
   const [prevState, setPrevState] = useState({
@@ -92,17 +91,17 @@ export function EditActivity() {
 
   return (
     <>
-     <FormEdit
-      handleChange={handleChange}
-      handleSubmit={handleSubmit}
-      activity={form.activity}
-      type={form.type}
-      participants={form.participants}
-      duration={form.duration}
-      accessibility={form.accessibility}
-      link={form.link}
-      kidFriendly={form.kidFriendly}
-     />
+      <FormEdit
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        activity={form.activity}
+        type={form.type}
+        participants={form.participants}
+        duration={form.duration}
+        accessibility={form.accessibility}
+        link={form.link}
+        kidFriendly={form.kidFriendly}
+      />
       {/* <h1>Edit Activity: {prevState.activity}</h1>
 
       <form onSubmit={handleSubmit}>
