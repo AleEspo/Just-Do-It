@@ -2,8 +2,8 @@
 
 import { Routes, Route } from "react-router-dom"
 import { Home} from "./Pages/Home"
-import { MyActivities } from "./Pages/MyActivities";
-import { MyActivity } from "./Pages/My Activity";
+import { Favourite } from "./Pages/Favourite";
+import { ViewActivity } from "./Pages/ViewActivity";
 import { EditActivity } from "./Pages/EditActivity"
 import { Page404 } from "./Pages/Page404"
 
@@ -12,8 +12,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/my-activities" element={<MyActivities />} />
-        <Route path="/my-activities/view-activity/:id" element={<MyActivity />} />
+        <Route path="/my-activities" element={<Favourite />} />
+        <Route path="/my-activities/view-activity/:id" element={<ViewActivity />} />
         <Route path="/my-activities/edit-activity/:id" element={<EditActivity />} />
         <Route path ="*" element={<Page404/>} />
       </Routes>

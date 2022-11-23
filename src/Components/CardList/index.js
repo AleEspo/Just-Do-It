@@ -3,7 +3,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 
 
-function KitchenSinkExample(props) {
+function CardList(props) {
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Body>
@@ -28,4 +28,4 @@ function KitchenSinkExample(props) {
   );
 }
 
-export default KitchenSinkExample;
+export default CardList;
