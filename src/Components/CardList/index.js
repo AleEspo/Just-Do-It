@@ -13,9 +13,7 @@ function CardList(props) {
         <ListGroup.Item>Type: {props.type}</ListGroup.Item>
         <ListGroup.Item>Participants: {props.participants}</ListGroup.Item>
         <ListGroup.Item>Duration: {props.duration}</ListGroup.Item>
-        <ListGroup.Item>
-          Kids Friendly: {props.kidFriendly ? "yes" : "no"}
-        </ListGroup.Item>
+        <ListGroup.Item>Kids Friendly: {props.kidFriendly ? "yes" : "no"} </ListGroup.Item>
         <ListGroup.Item>Accessibility: {props.accessibility}</ListGroup.Item>
         <ListGroup.Item>Link: {props.link}</ListGroup.Item>
       </ListGroup>

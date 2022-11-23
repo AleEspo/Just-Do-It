@@ -5,6 +5,7 @@ import { SearchActivity } from "../../Components/SearchActivity";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import KitchenSinkExample from "../../Components/CardList";
+import FormEdit from "../../Components/FormEdit";
 
 export function Home() {
   const [form, setForm] = useState({
@@ -73,6 +74,7 @@ export function Home() {
   return (
     <>
       <h1>Just Do It</h1>
+      <FormEdit />
       <div>
         <h2>Form para adicionar atividades no API - mudar de pagina</h2>
         <form onSubmit={handleSubmit}>
