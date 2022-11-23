@@ -221,6 +221,7 @@ export function Home() {
         <br />
         <Link to="/my-activities">My Activities</Link>
       </div>
+
       <div>
         <h2>Search activity (form para filtrar as atividades)</h2>
         <SearchActivity
