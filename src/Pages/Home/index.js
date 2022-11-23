@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { SearchActivity } from "../../Components/SearchActivity";
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
-import KitchenSinkExample from "../../Components/CardList";
-import FormEdit from "../../Components/FormEdit";
+
 
 export function Home() {
   const [form, setForm] = useState({
@@ -20,7 +17,37 @@ export function Home() {
     kidFriendly: false,
   });
 
-  console.log(form);
+  // test function to create custom collections based on user IP
+
+  // function getIP(){
+  //     function text(url) {
+  //         return fetch(url).then(res => res.text());
+  //       }
+
+  //       text('https://www.cloudflare.com/cdn-cgi/trace').then(data => {
+  //         let ipRegex = /[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
+  //         let ip = data.match(ipRegex)[0];
+  //         console.log(ip);
+  //         return ip;
+  //       });
+  // }
+
+  // let IP = ""
+
+  // IP = getIP()
+
+  // console.log(IP)
+
+  // async function createCollectionIP(){
+  //     try {
+  //         await axios.post(`https://ironrest.cyclic.app/createCollection/${IP}`)
+  //         console.log(`https://ironrest.cyclic.app/createCollection/${IP}`)
+  //     } catch (err){
+  //         console.log(err)
+  //     }
+  // }
+
+  // createCollectionIP()
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -34,6 +61,9 @@ export function Home() {
         "https://ironrest.cyclic.app/just-do-it",
         { ...form }
       );
+
+      await axios.post("https://ironrest.cyclic.app/just-do-it-fav");
+
       setForm({
         activity: "",
         accessibility: "",
@@ -50,9 +80,22 @@ export function Home() {
     }
   }
 
+  async function addToFavourite(id) {
+    try {
+      const favActivity = await axios.get(
+        `https://ironrest.cyclic.app/just-do-it/${id}`
+      );
+      await axios.post(
+        `https://ironrest.cyclic.app/just-do-it-fav`,
+        favActivity.data
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const [activities, setActivities] = useState([]);
   const [filteredActivities, setFilteredActivities] = useState([]);
-  const myActivities = [];
 
   useEffect(() => {
     async function fetchActivity() {
@@ -219,7 +262,7 @@ export function Home() {
           <button>Create new Activity</button>
         </form>
         <br />
-        <Link to="/my-activities">My Activities</Link>
+        <Link to="/my-activities">My Favourites</Link>
       </div>
 
       <div>
@@ -244,10 +287,10 @@ export function Home() {
               </p>
               <button
                 onClick={() => {
-                  myActivities.push(currentActivity);
+                  addToFavourite(currentActivity._id);
                 }}
               >
-                Add to my activities
+                Add to my favourites
               </button>
             </div>
           );

@@ -12,7 +12,7 @@ export function Favourite() {
     async function fetchActivity() {
       try {
         const response = await axios.get(
-          "https://ironrest.cyclic.app/just-do-it"
+          "https://ironrest.cyclic.app/just-do-it-fav"
         );
 
         setActivities(response.data);
