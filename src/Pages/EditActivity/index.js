@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useNavigate } from "react-router-dom"
+
+// pra criar Toast apos de ser redirecionado, video de quarta 16/11 min 2.41 + 17/11 toda
+
 
 export function EditActivity (){
 
+    const params = useParams();
+
+    const navigate = useNavigate()
 
     const [form, setForm] = useState({
         activity: "",
@@ -14,14 +20,27 @@ export function EditActivity (){
         link: "",
     })
 
-    const params = useParams();
+    // outro setState pra colocar un titulo fixo em cima da pagina de edição; só const não funciona?
+    const [prevState, setPrevState] = useState ({
+        activity: "",
+        accessibility: 0,
+        type: "",
+        participants: 1,
+        price: 0,
+        link: "",
+    })
 
     useEffect(()=> {
         async function fetchActivity() {
             try {
                 const response = await axios.get(`https://ironrest.cyclic.app/just-do-it/${params.id}`
                 );
+
+                delete response.data._id
+
                 setForm(response.data);
+                setPrevState(response.data)
+
             } catch (err) {
                 console.log(err)
             }
@@ -38,9 +57,12 @@ export function EditActivity (){
 
         e.preventDefault()
         
+        // delete ._id ??? video 18/11 min 1.30
+
         try {
-            const response = await axios.post("https://ironrest.cyclic.app/just-do-it", {...form, })
-            console.log(response.data)
+            const response = await axios.put(`https://ironrest.cyclic.app/just-do-it/${params.id}`, form)
+            navigate("/my-activities")
+             
         } catch (err){
             console.log(err)
         }
@@ -48,7 +70,7 @@ export function EditActivity (){
 
     return (
         <>
-            <h1>Edit Activity</h1>
+            <h1>Edit Activity: {prevState.activity}</h1>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="input-activity">Activity</label>
@@ -84,7 +106,7 @@ export function EditActivity (){
                 <label htmlFor="input-kids">Kid Friendly</label>
                 <input id="input-kids" type="boolean" name="kidFriendly" onChange={handleChange} value={form.kidFriendly}/>
 
-                <button>Submit Activity</button>
+                <button>Save Changes</button>
 
                 <Link to="/my-activities">Back to my Activites</Link>
 
