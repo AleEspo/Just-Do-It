@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { SearchActivity } from "../../Components/SearchActivity";
+import FormEdit from "../../Components/FormEdit"
 
 
 export function Home() {
