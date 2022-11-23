@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import KitchenSinkExample from "../../Components/cards/kitchen-sink"
+
 
 export function MyActivities() {
   const [activities, setActivities] = useState([]);
@@ -42,31 +45,40 @@ export function MyActivities() {
 
       {activities.map((currentActivity) => {
         return (
-          <div key={currentActivity._id}>
-            <h4>{currentActivity.activity}</h4>
-            <p>{currentActivity.type}</p>
-            <p>{currentActivity.paticipants}</p>
-            <p>{currentActivity.accessibility}</p>
-            <p>{currentActivity.price}</p>
-            <p>Kids Friendly: {currentActivity.kidFriendly ? "Yes" : "No  " }</p>
-            <Link
-              to={`/my-activities/view-activity/${currentActivity._id}`}
-              className="m-3"
-            >
-              {" "}
-              View Activity
-            </Link>
-            <Link
-              to={`/my-activities/edit-activity/${currentActivity._id}`}
-              className="m-3"
-            >
-              {" "}
-              Edit Activity
-            </Link>
-            <button onClick={()=>{
-              handleDelete(currentActivity._id)
-            }} >Delete note</button>
-          </div>
+          <KitchenSinkExample
+            activity={currentActivity.activity}
+            type={currentActivity.type}
+            participants={currentActivity.participants}
+            duration={currentActivity.duration}
+            kidFriendly={currentActivity.kidFriendly}
+            accessibility={currentActivity.accessibility}
+            // link={currentActivity.link}
+          />
+          // <div key={currentActivity._id}>
+          //   <h4>{currentActivity.activity}</h4>
+          //   <p>{currentActivity.type}</p>
+          //   <p>{currentActivity.paticipants}</p>
+          //   <p>{currentActivity.accessibility}</p>
+          //   <p>{currentActivity.price}</p>
+          //   <p>Kids Friendly: {currentActivity.kidFriendly ? "Yes" : "No  " }</p>
+          //   <Link
+          //     to={`/my-activities/view-activity/${currentActivity._id}`}
+          //     className="m-3"
+          //   >
+          //     {" "}
+          //     View Activity
+          //   </Link>
+          //   <Link
+          //     to={`/my-activities/edit-activity/${currentActivity._id}`}
+          //     className="m-3"
+          //   >
+          //     {" "}
+          //     Edit Activity
+          //   </Link>
+          //   <button onClick={()=>{
+          //     handleDelete(currentActivity._id)
+          //   }} >Delete note</button>
+          // </div>
         );
       })}
     </>
