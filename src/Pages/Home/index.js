@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { SearchActivity } from "../../Components/SearchActivity";
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
-import KitchenSinkExample from "../../Components/CardList";
 
 export function Home() {
   const [form, setForm] = useState({
@@ -69,7 +66,7 @@ export function Home() {
      await axios.post(
             "https://ironrest.cyclic.app/just-do-it-fav",
             );
-            
+
       setForm({
         activity: "",
         accessibility: "",
@@ -85,6 +82,16 @@ export function Home() {
       console.log(err);
     }
   }
+
+
+
+  async function addToFavourite(id) {
+    try {
+        axios.post(`https://ironrest.cyclic.app/just-do-it-fav/${id}`);
+      } catch (err) {
+        console.log(err);
+      }
+    }
 
   const [activities, setActivities] = useState([]);
   const [filteredActivities, setFilteredActivities] = useState([]);
@@ -254,7 +261,7 @@ export function Home() {
           <button>Create new Activity</button>
         </form>
         <br />
-        <Link to="/my-activities">My Activities</Link>
+        <Link to="/my-activities">My Favourites</Link>
       </div>
       <div>
         <h2>Search activity (form para filtrar as atividades)</h2>
@@ -278,10 +285,10 @@ export function Home() {
               </p>
               <button
                 onClick={() => {
-                  myActivities.push(currentActivity);
+                    addToFavourite(currentActivity._id)
                 }}
               >
-                Add to my activities
+                Add to my favourites
               </button>
             </div>
           );
