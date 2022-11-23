@@ -19,7 +19,40 @@ export function Home() {
     kidFriendly: false,
   });
 
-  console.log(form);
+
+// test function to create custom collections based on user IP
+
+
+
+// function getIP(){
+//     function text(url) {
+//         return fetch(url).then(res => res.text());
+//       }
+      
+//       text('https://www.cloudflare.com/cdn-cgi/trace').then(data => {
+//         let ipRegex = /[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
+//         let ip = data.match(ipRegex)[0];
+//         console.log(ip);
+//         return ip;
+//       });
+// }
+
+// let IP = ""
+
+// IP = getIP()
+
+// console.log(IP)
+
+// async function createCollectionIP(){
+//     try {
+//         await axios.post(`https://ironrest.cyclic.app/createCollection/${IP}`)
+//         console.log(`https://ironrest.cyclic.app/createCollection/${IP}`)
+//     } catch (err){
+//         console.log(err)
+//     }
+// }
+
+// createCollectionIP()
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -31,8 +64,12 @@ export function Home() {
     try {
       const response = await axios.post(
         "https://ironrest.cyclic.app/just-do-it",
-        { ...form }
-      );
+        { ...form })
+
+     await axios.post(
+            "https://ironrest.cyclic.app/just-do-it-fav",
+            );
+            
       setForm({
         activity: "",
         accessibility: "",
