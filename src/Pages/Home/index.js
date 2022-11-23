@@ -9,13 +9,17 @@ import KitchenSinkExample from "../../Components/CardList";
 export function Home() {
   const [form, setForm] = useState({
     activity: "",
-    accessibility: 0,
+    accessibility: "",
+    availability: 0,
     type: "",
     participants: 1,
+    duration: "",
     price: 0,
     link: "",
     kidFriendly: false,
   });
+
+  console.log(form);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -31,9 +35,11 @@ export function Home() {
       );
       setForm({
         activity: "",
-        accessibility: 0,
+        accessibility: "",
+        availability: 0,
         type: "",
         participants: 1,
+        duration: "",
         price: 0,
         link: "",
         kidFriendly: false,
@@ -46,9 +52,6 @@ export function Home() {
   const [activities, setActivities] = useState([]);
   const [filteredActivities, setFilteredActivities] = useState([]);
   const myActivities = [];
-  {
-    console.log(myActivities);
-  }
 
   useEffect(() => {
     async function fetchActivity() {
@@ -86,22 +89,14 @@ export function Home() {
 
           <br />
 
-          <label htmlFor="input-accessibility">Accessibility</label>
-          <input
-            id="input-accessibility"
-            type="number"
-            name="accessibility"
-            onChange={handleChange}
-            value={form.accessibility}
-          />
-
-          <br />
-
           <label htmlFor="input-type">Type</label>
-          <select id="input-type" name="type" defaultValue="education">
-            <option value="education" selected>
-              Education
-            </option>
+          <select
+            id="input-type"
+            name="type"
+            onChange={handleChange}
+            value={form.type}
+          >
+            <option value="education">Education</option>
             <option value="recreational">Recreational</option>
             <option value="social">Social</option>
             <option value="diy">DIY</option>
@@ -132,6 +127,27 @@ export function Home() {
 
           <br />
 
+          <label htmlFor="input-accessibility">Accessibility</label>
+          <select
+            id="input-accessibility"
+            name="accessibility"
+            onChange={handleChange}
+            value={form.accessibility}
+          >
+            <option value="few to no challenges">Few to no challenges</option>
+            <option value="minor challenges">Minor challenges</option>
+            <option value="major challenges">Major challenges</option>
+          </select>
+          {/* <input
+  id="input-accessibility"
+  type="number"
+  name="accessibility"
+  onChange={handleChange}
+  value={form.accessibility}
+/> */}
+
+          <br />
+
           <label htmlFor="input-price">Price</label>
           <input
             id="input-price"
@@ -155,7 +171,12 @@ export function Home() {
           <br />
 
           <label htmlFor="input-duration">Duration</label>
-          <select id="input-duration" name="duration" defaultValue="minutes">
+          <select
+            id="input-duration"
+            name="duration"
+            onChange={handleChange}
+            value={form.duration}
+          >
             <option value="minutes">Minutes</option>
             <option value="hours">Hours</option>
             <option value="days">Days</option>
@@ -221,7 +242,6 @@ export function Home() {
               <button
                 onClick={() => {
                   myActivities.push(currentActivity);
-                  console.log(myActivities);
                 }}
               >
                 Add to my activities
@@ -230,7 +250,7 @@ export function Home() {
           );
         })}
       </div>
-      {useEffect(() => {
+      {/* {useEffect(() => {
         function activityList() {
           return (
             <>
@@ -251,7 +271,6 @@ export function Home() {
                       <button
                         onClick={() => {
                           myActivities.push(currentActivity);
-                          console.log(myActivities);
                         }}
                       >
                         Add to my activities
@@ -264,7 +283,7 @@ export function Home() {
           );
         }
         activityList();
-      }, [activities])}
+      }, [activities])} */}
     </>
   );
 }
