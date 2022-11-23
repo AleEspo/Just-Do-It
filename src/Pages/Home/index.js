@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { SearchActivity } from "../../Components/SearchActivity";
-
+import FormEdit from "../../Components/FormEdit";
 
 export function Home() {
   const [form, setForm] = useState({
@@ -16,6 +16,8 @@ export function Home() {
     link: "",
     kidFriendly: false,
   });
+
+  console.log(form)
 
   // test function to create custom collections based on user IP
 
@@ -50,7 +52,18 @@ export function Home() {
   // createCollectionIP()
 
   function handleChange(e) {
+    if (e.target.id === "input-kids") {
+      if (form.kidFriendly === true) {
+        setForm({ ...form, kidFriendly: false });
+        return;
+      } else {
+        setForm({ ...form, kidFriendly: true });
+        return;
+      }
+    }
+
     setForm({ ...form, [e.target.name]: e.target.value });
+    console.log(e);
   }
 
   async function handleSubmit(e) {
@@ -117,8 +130,18 @@ export function Home() {
   return (
     <>
       <h1>Just Do It</h1>
-      <FormEdit />
-      <div>
+      <FormEdit
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        activity={form.activity}
+        type={form.type}
+        participants={form.participants}
+        duration={form.duration}
+        accessibility={form.accessibility}
+        link={form.link}
+        kidFriendly={form.kidFriendly}
+      />
+      {/* <div>
         <h2>Form para adicionar atividades no API - mudar de pagina</h2>
         <form onSubmit={handleSubmit}>
           <br />
@@ -151,13 +174,7 @@ export function Home() {
             <option value="music">Music</option>
             <option value="busywork">Busy Work</option>
           </select>
-          {/* <input
-            id="input-type"
-            type="text"
-            name="type"
-            onChange={handleChange}
-            value={form.type}
-          /> */}
+       
 
           <br />
 
@@ -183,13 +200,7 @@ export function Home() {
             <option value="minor challenges">Minor challenges</option>
             <option value="major challenges">Major challenges</option>
           </select>
-          {/* <input
-  id="input-accessibility"
-  type="number"
-  name="accessibility"
-  onChange={handleChange}
-  value={form.accessibility}
-/> */}
+          
 
           <br />
 
@@ -227,13 +238,7 @@ export function Home() {
             <option value="days">Days</option>
             <option value="weeks">Weeks</option>
           </select>
-          {/* <input
-            id="input-duration"
-            type="text"
-            name="duration"
-            onChange={handleChange}
-            value={form.duration}
-          /> */}
+         
 
           <br />
 
@@ -271,7 +276,7 @@ export function Home() {
           filteredFunction={setFilteredActivities}
           allActivities={activities}
         />
-      </div>
+      </div> */}
       <div>
         <h2>All activities (lista de atividades do API)</h2>
         {filteredActivities.map((currentActivity) => {
