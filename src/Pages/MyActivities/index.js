@@ -52,7 +52,10 @@ export function MyActivities() {
             duration={currentActivity.duration}
             kidFriendly={currentActivity.kidFriendly}
             accessibility={currentActivity.accessibility}
-            // link={currentActivity.link}
+            link={currentActivity.link}
+            view={`/my-activities/view-activity/${currentActivity._id}`}
+            edit={`/my-activities/edit-activity/${currentActivity._id}`}
+            delete={()=>{handleDelete(currentActivity._id)}}
           />
           // <div key={currentActivity._id}>
           //   <h4>{currentActivity.activity}</h4>

@@ -20,14 +20,9 @@ function KitchenSinkExample(props) {
         <ListGroup.Item>Link: {props.link}</ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <Button href="#">Link</Button> <Button type="submit">View</Button>{" "}
-        <Button href="#">Link</Button> <Button type="submit">Edit</Button>{" "}
-        <Button href="#">Link</Button> <Button type="submit">Delete</Button>{" "}
-        <Button variant="primary" href={`/my-activities/edit-activity/id`}>
-          View
-        </Button>{" "}
-        <Button variant="success">Edit</Button>{" "}
-        <Button variant="danger">Delete</Button>{" "}
+        <Button variant="primary" href={props.view}>View</Button>
+        <Button variant="success" href={props.edit}>Edit</Button>
+        <Button variant="danger" onClick={props.delete}>Delete</Button>
       </Card.Body>
     </Card>
   );
