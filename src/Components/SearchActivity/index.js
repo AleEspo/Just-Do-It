@@ -1,8 +1,16 @@
 export function SearchActivity(props){
 
     function handleFilter(e){
-        // 1.59 dia 11/11 sexta
-    }
+        props.filteredFunction((prevState) => {
+            return props.allActivities.filter((currentElement) => {
+                return currentElement.activity.toLowerCase().includes(e.target.value.toLowerCase());
+              });
+                })
+                if (e.target.value === "") {
+                  props.filteredFunction(props.allActivities);
+                  return;
+                }
+              }
 
     return (
         <div>
