@@ -87,7 +87,8 @@ export function Home() {
 
   async function addToFavourite(id) {
     try {
-        axios.post(`https://ironrest.cyclic.app/just-do-it-fav/${id}`);
+        const favActivity = await axios.get(`https://ironrest.cyclic.app/just-do-it/${id}`)
+        const favAdd = await axios.post(`https://ironrest.cyclic.app/just-do-it-fav`, favActivity.data)
       } catch (err) {
         console.log(err);
       }
@@ -95,7 +96,6 @@ export function Home() {
 
   const [activities, setActivities] = useState([]);
   const [filteredActivities, setFilteredActivities] = useState([]);
-  const myActivities = [];
 
   useEffect(() => {
     async function fetchActivity() {
