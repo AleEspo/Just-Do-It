@@ -16,40 +16,37 @@ export function Home() {
     kidFriendly: false,
   });
 
+  // test function to create custom collections based on user IP
 
-// test function to create custom collections based on user IP
+  // function getIP(){
+  //     function text(url) {
+  //         return fetch(url).then(res => res.text());
+  //       }
 
+  //       text('https://www.cloudflare.com/cdn-cgi/trace').then(data => {
+  //         let ipRegex = /[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
+  //         let ip = data.match(ipRegex)[0];
+  //         console.log(ip);
+  //         return ip;
+  //       });
+  // }
 
+  // let IP = ""
 
-// function getIP(){
-//     function text(url) {
-//         return fetch(url).then(res => res.text());
-//       }
-      
-//       text('https://www.cloudflare.com/cdn-cgi/trace').then(data => {
-//         let ipRegex = /[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
-//         let ip = data.match(ipRegex)[0];
-//         console.log(ip);
-//         return ip;
-//       });
-// }
+  // IP = getIP()
 
-// let IP = ""
+  // console.log(IP)
 
-// IP = getIP()
+  // async function createCollectionIP(){
+  //     try {
+  //         await axios.post(`https://ironrest.cyclic.app/createCollection/${IP}`)
+  //         console.log(`https://ironrest.cyclic.app/createCollection/${IP}`)
+  //     } catch (err){
+  //         console.log(err)
+  //     }
+  // }
 
-// console.log(IP)
-
-// async function createCollectionIP(){
-//     try {
-//         await axios.post(`https://ironrest.cyclic.app/createCollection/${IP}`)
-//         console.log(`https://ironrest.cyclic.app/createCollection/${IP}`)
-//     } catch (err){
-//         console.log(err)
-//     }
-// }
-
-// createCollectionIP()
+  // createCollectionIP()
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -61,11 +58,10 @@ export function Home() {
     try {
       const response = await axios.post(
         "https://ironrest.cyclic.app/just-do-it",
-        { ...form })
+        { ...form }
+      );
 
-     await axios.post(
-            "https://ironrest.cyclic.app/just-do-it-fav",
-            );
+      await axios.post("https://ironrest.cyclic.app/just-do-it-fav");
 
       setForm({
         activity: "",
@@ -83,16 +79,19 @@ export function Home() {
     }
   }
 
-
-
   async function addToFavourite(id) {
     try {
-        const favActivity = await axios.get(`https://ironrest.cyclic.app/just-do-it/${id}`)
-        const favAdd = await axios.post(`https://ironrest.cyclic.app/just-do-it-fav`, favActivity.data)
-      } catch (err) {
-        console.log(err);
-      }
+      const favActivity = await axios.get(
+        `https://ironrest.cyclic.app/just-do-it/${id}`
+      );
+      await axios.post(
+        `https://ironrest.cyclic.app/just-do-it-fav`,
+        favActivity.data
+      );
+    } catch (err) {
+      console.log(err);
     }
+  }
 
   const [activities, setActivities] = useState([]);
   const [filteredActivities, setFilteredActivities] = useState([]);
@@ -285,7 +284,7 @@ export function Home() {
               </p>
               <button
                 onClick={() => {
-                    addToFavourite(currentActivity._id)
+                  addToFavourite(currentActivity._id);
                 }}
               >
                 Add to my favourites
