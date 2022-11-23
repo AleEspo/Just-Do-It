@@ -11,6 +11,7 @@ export function Home() {
     participants: 1,
     price: 0,
     link: "",
+    kidFriendly: false
   });
 
   function handleChange(e) {
@@ -32,6 +33,7 @@ export function Home() {
         participants: 1,
         price: 0,
         link: "",
+        kidFriendly: false
     })
     } catch (err) {
       console.log(err);
@@ -66,6 +68,7 @@ export function Home() {
       <div>
         <h2>Form para adicionar atividades no API - mudar de pagina</h2>
         <form onSubmit={handleSubmit}>
+        <br />
           <label htmlFor="input-activity">Activity</label>
           <input
             id="input-activity"
@@ -73,7 +76,10 @@ export function Home() {
             name="activity"
             onChange={handleChange}
             value={form.activity}
+            placeholder="ex: Learn a new language"
           />
+
+          <br />
 
           <label htmlFor="input-accessibility">Accessibility</label>
           <input
@@ -84,17 +90,19 @@ export function Home() {
             value={form.accessibility}
           />
 
+<br />
+
           <label htmlFor="input-type">Type</label>
-          <select id="input-type">
-            <option>Education</option>
-            <option>Recreational</option>
-            <option>Social</option>
-            <option>DIY</option>
-            <option>Charity</option>
-            <option>Cooking</option>
-            <option>Relaxation</option>
-            <option>Music</option>
-            <option>Busy Work</option>
+          <select id="input-type" name="type" defaultValue="education">
+            <option value="education" selected>Education</option>
+            <option value="recreational">Recreational</option>
+            <option value="social">Social</option>
+            <option value="diy">DIY</option>
+            <option vlaue="charity">Charity</option>
+            <option value="cooking">Cooking</option>
+            <option value="relaxation">Relaxation</option>
+            <option value="music">Music</option>
+            <option value="busywork">Busy Work</option>
           </select>
           {/* <input
             id="input-type"
@@ -103,6 +111,8 @@ export function Home() {
             onChange={handleChange}
             value={form.type}
           /> */}
+
+          <br />
 
           <label htmlFor="input-participants">Participants</label>
           <input
@@ -113,14 +123,18 @@ export function Home() {
             value={form.participants}
           />
 
+<br />
+
           <label htmlFor="input-price">Price</label>
           <input
             id="input-price"
-            type="text"
-            name="number"
+            type="number"
+            name="price"
             onChange={handleChange}
             value={form.price}
           />
+
+<br />
 
           <label htmlFor="input-availability">Availability</label>
           <input
@@ -131,12 +145,14 @@ export function Home() {
             value={form.availability}
           />
 
+<br />
+
           <label htmlFor="input-duration">Duration</label>
-          <select>
-            <option>Minutes</option>
-            <option>Hours</option>
-            <option>Days</option>
-            <option>Weeks</option>
+          <select id="input-duration" name="duration" defaultValue="minutes">
+            <option value="minutes" >Minutes</option>
+            <option value="hours">Hours</option>
+            <option value="days">Days</option>
+            <option value="weeks">Weeks</option>
           </select>
           {/* <input
             id="input-duration"
@@ -145,6 +161,8 @@ export function Home() {
             onChange={handleChange}
             value={form.duration}
           /> */}
+
+          <br />
 
           <label htmlFor="input-link">Link</label>
           <input
@@ -155,17 +173,22 @@ export function Home() {
             value={form.link}
           />
 
+<br />
+
           <label htmlFor="input-kids">Kid Friendly</label>
           <input
             id="input-kids"
-            type="radio"
+            type="checkbox"
             name="kidFriendly"
             onChange={handleChange}
-            value={form.kidFriendly}
+            value={true}
           />
+
+<br />
 
           <button>Create new Activity</button>
         </form>
+        <br />
         <Link to="/my-activities">My Activities</Link>
       </div>
       <div>
@@ -192,6 +215,38 @@ export function Home() {
           );
         })}
       </div>
+
+{useEffect(()=>{
+    function activityList(){
+    return (
+    <>
+    <div>
+        <h2>All activities (lista de atividades do API)</h2>
+        {filteredActivities.map((currentActivity) => {
+          return (
+            <div key={currentActivity._id}>
+              <h4>{currentActivity.activity}</h4>
+              <p>{currentActivity.type}</p>
+              <p>{currentActivity.paticipants}</p>
+              <p>{currentActivity.accessibility}</p>
+              <p>{currentActivity.price}</p>
+              <p>
+                Kids Friendly: {currentActivity.kidFriendly ? "Yes" : "No  "}
+              </p>
+              <button onClick={()=>{
+                myActivities.push(currentActivity)
+                console.log(myActivities)}} >Add to my activities</button>
+            </div>
+          );
+        })}
+      </div>
+      </>
+      )
+    }
+    activityList()
+}, [activities])
+}
+      
     </>
   );
 }
