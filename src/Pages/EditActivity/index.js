@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import FormEdit from "../../Components/FormEdit";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 
 // pra criar Toast apos de ser redirecionado, video de quarta 16/11 min 2.41 + 17/11 toda
@@ -14,21 +16,29 @@ export function EditActivity() {
 
   const [form, setForm] = useState({
     activity: "",
-    accessibility: 0,
+    accessibility: "",
+    availability: 0,
     type: "",
     participants: 1,
+    duration: "",
     price: 0,
     link: "",
+    kidFriendly: false,
   });
+
+  console.log(form)
 
   // outro setState pra colocar un titulo fixo em cima da pagina de edição; só const não funciona?
   const [prevState, setPrevState] = useState({
     activity: "",
-    accessibility: 0,
+    accessibility: "",
+    availability: 0,
     type: "",
     participants: 1,
+    duration: "",
     price: 0,
     link: "",
+    kidFriendly: false,
   });
 
   useEffect(() => {
@@ -51,6 +61,16 @@ export function EditActivity() {
   }, []);
 
   function handleChange(e) {
+    if (e.target.id === "input-kids") {
+      if (form.kidFriendly === true) {
+        setForm({ ...form, kidFriendly: false });
+        return;
+      } else {
+        setForm({ ...form, kidFriendly: true });
+        return;
+      }
+    }
+
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
@@ -72,7 +92,18 @@ export function EditActivity() {
 
   return (
     <>
-      <h1>Edit Activity: {prevState.activity}</h1>
+     <FormEdit
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      activity={form.activity}
+      type={form.type}
+      participants={form.participants}
+      duration={form.duration}
+      accessibility={form.accessibility}
+      link={form.link}
+      kidFriendly={form.kidFriendly}
+     />
+      {/* <h1>Edit Activity: {prevState.activity}</h1>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="input-activity">Activity</label>
@@ -149,7 +180,7 @@ export function EditActivity() {
         />
         <Button>Save Changes</Button>
         <Link to="/my-activities">Back to my Activites</Link>
-      </form>
+      </form> */}
     </>
   );
 }
