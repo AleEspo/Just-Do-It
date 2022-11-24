@@ -30,8 +30,6 @@ export function Favourite() {
     setIsDeleted(false)
   }, [activities])
 
-  // toast "Are you sure you want to delete?" min 2.37 pula pra -> 2.45 aula 18/11 sexta
-
   async function handleDelete(id) {
     try {
       axios.delete(`https://ironrest.cyclic.app/just-do-it-fav/${id}`);
@@ -44,6 +42,9 @@ export function Favourite() {
   return (
     <>
       <h1>My Favourite Activities</h1>
+      <div>
+        <Link to="/">Back to activity list</Link>
+      </div>
 
       {activities.map((currentActivity) => {
         return (
@@ -62,31 +63,6 @@ export function Favourite() {
             function={location.pathname==="/" ? "fav" : "delete"}
             id={currentActivity._id}
           />
-          // <div key={currentActivity._id}>
-          //   <h4>{currentActivity.activity}</h4>
-          //   <p>{currentActivity.type}</p>
-          //   <p>{currentActivity.paticipants}</p>
-          //   <p>{currentActivity.accessibility}</p>
-          //   <p>{currentActivity.price}</p>
-          //   <p>Kids Friendly: {currentActivity.kidFriendly ? "Yes" : "No  " }</p>
-          //   <Link
-          //     to={`/my-activities/view-activity/${currentActivity._id}`}
-          //     className="m-3"
-          //   >
-          //     {" "}
-          //     View Activity
-          //   </Link>
-          //   <Link
-          //     to={`/my-activities/edit-activity/${currentActivity._id}`}
-          //     className="m-3"
-          //   >
-          //     {" "}
-          //     Edit Activity
-          //   </Link>
-          //   <button onClick={()=>{
-          //     handleDelete(currentActivity._id)
-          //   }} >Delete note</button>
-          // </div>
         );
       })}
     </>

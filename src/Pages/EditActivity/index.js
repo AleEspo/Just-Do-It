@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,6 +7,7 @@ import FormEdit from "../../Components/Form";
 import { propTypes } from "react-bootstrap/esm/Image";
 
 // pra criar Toast apos de ser redirecionado, video de quarta 16/11 min 2.41 + 17/11 toda
+// so redirect video 16/11 min 2.39
 
 export function EditActivity() {
   const params = useParams();
@@ -44,7 +45,7 @@ export function EditActivity() {
     async function fetchActivity() {
       try {
         const response = await axios.get(
-          `https://ironrest.cyclic.app/just-do-it/${params.id}`
+          `https://ironrest.cyclic.app/just-do-it-fav/${params.id}`
         );
 
         delete response.data._id;
@@ -78,7 +79,7 @@ export function EditActivity() {
 
     try {
       const response = await axios.put(
-        `https://ironrest.cyclic.app/just-do-it/${params.id}`,
+        `https://ironrest.cyclic.app/just-do-it-fav/${params.id}`,
         form
       );
       navigate("/my-activities");
