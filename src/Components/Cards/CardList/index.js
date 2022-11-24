@@ -29,7 +29,7 @@ function CardList(props) {
           } else {
             return props.delete
           }
-        }}>?</Button>
+        }}>Delete</Button>
       </Card.Body>
     </Card>
   );
