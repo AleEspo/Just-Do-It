@@ -1,9 +1,11 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function FormEdit(props) {
   return (
-    <Form onSubmit={props.handleSubmit} style={{ width: '18rem' }}>
+    <Form onSubmit={props.handleSubmit} style={{ width: "18rem" }}>
       <Form.Group className="mb-3" controlId="input-activity">
         <Form.Label>Activity</Form.Label>
         <Form.Control
@@ -37,10 +39,10 @@ function FormEdit(props) {
       <Form.Group className="mb-3" controlId="input-participants">
         <Form.Label>Participants</Form.Label>
         <Form.Control
-            type="number"
-            name="participants"
-            onChange={props.handleChange}
-            value={props.participants}
+          type="number"
+          name="participants"
+          onChange={props.handleChange}
+          value={props.participants}
         />
       </Form.Group>
 
@@ -83,13 +85,13 @@ function FormEdit(props) {
 
       <Form.Group className="mb-3" controlId="input-kids">
         <Form.Check
-          type="checkbox" 
-          label="Kids Friendly" 
+          type="checkbox"
+          label="Kids Friendly"
           name="kidFriendly"
           onChange={props.handleChange}
           value={props.kidFriendly}
           checked={props.kidFriendly ? true : false}
-          />
+        />
       </Form.Group>
 
       <Button variant="primary" type="submit">
