@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CardList from "../../Components/Cards/CardList";
-import {useLocation} from "react-router-dom"
+import { useLocation } from "react-router-dom"
+import style from "./style.module.css";
 
 export function Favourite() {
   const [activities, setActivities] = useState([]);
@@ -42,29 +43,30 @@ export function Favourite() {
   return (
     <>
       <h1>My Favourite Activities</h1>
+      <div className={style.favourite}>
+        {activities.map((currentActivity) => {
+          return (
+            <CardList
+              key={currentActivity._id}
+              activity={currentActivity.activity}
+              type={currentActivity.type}
+              participants={currentActivity.participants}
+              duration={currentActivity.duration}
+              kidFriendly={currentActivity.kidFriendly}
+              accessibility={currentActivity.accessibility}
+              link={currentActivity.link}
+              view={`/my-activities/view-activity/${currentActivity._id}`}
+              edit={`/my-activities/edit-activity/${currentActivity._id}`}
+              setIsDeleted={setIsDeleted}
+              function={location.pathname === "/" ? "fav" : "delete"}
+              id={currentActivity._id}
+            />
+          );
+        })}
+      </div>
       <div>
         <Link to="/">Back to activity list</Link>
       </div>
-
-      {activities.map((currentActivity) => {
-        return (
-          <CardList
-            key={currentActivity._id}
-            activity={currentActivity.activity}
-            type={currentActivity.type}
-            participants={currentActivity.participants}
-            duration={currentActivity.duration}
-            kidFriendly={currentActivity.kidFriendly}
-            accessibility={currentActivity.accessibility}
-            link={currentActivity.link}
-            view={`/my-activities/view-activity/${currentActivity._id}`}
-            edit={`/my-activities/edit-activity/${currentActivity._id}`}
-            setIsDeleted={setIsDeleted}
-            function={location.pathname==="/" ? "fav" : "delete"}
-            id={currentActivity._id}
-          />
-        );
-      })}
     </>
   );
 }

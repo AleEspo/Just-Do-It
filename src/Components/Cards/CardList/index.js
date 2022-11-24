@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import {useLocation} from "react-router-dom"
 import axios from "axios"
 import toast from "react-hot-toast"
+import style from "./style.module.css"
 
 
 function CardList(props) {
@@ -53,7 +54,7 @@ function CardList(props) {
         <ListGroup.Item>Accessibility: {props.accessibility}</ListGroup.Item>
         <ListGroup.Item>Link: {props.link ? props.link : "/"}</ListGroup.Item>
       </ListGroup>
-      <Card.Body>
+      <Card.Body className={style.button}>
           <Button variant="primary" href={props.view}>View</Button>
           <Button variant="success" href={props.edit}>Edit</Button>
         {/* {props.function=== "fav" ? ()=> { return (

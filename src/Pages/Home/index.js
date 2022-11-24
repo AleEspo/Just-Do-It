@@ -7,6 +7,7 @@ import CardList from "../../Components/Cards/CardList";
 import { GenRandom } from "../../Components/Cards/RandomCard - inProgress";
 import { useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
+import style from "./style.module.css";
 
 export function Home() {
   const [form, setForm] = useState({
@@ -147,57 +148,59 @@ export function Home() {
   // }, []);
 
   return (
-    <div  className="m-3">
-
+    <div className={style.home}>
       <h1>Just Do It</h1>
-
-      <FormEdit
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        activity={form.activity}
-        type={form.type}
-        participants={form.participants}
-        duration={form.duration}
-        accessibility={form.accessibility}
-        link={form.link}
-        kidFriendly={form.kidFriendly}
-      />
-
-      <div>
-        <Link to="/my-activities">Go to My Favourites</Link>
-      </div>
-
       <div>
         <h2>Search activity (form para filtrar as atividades)</h2>
         <SearchActivity
           filteredFunction={setFilteredActivities}
           allActivities={activities}
+          className={style.SearchActivity}
         />
       </div>
+      <div className={style.container}>
+        <div>
+          <FormEdit
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            activity={form.activity}
+            type={form.type}
+            participants={form.participants}
+            duration={form.duration}
+            accessibility={form.accessibility}
+            link={form.link}
+            kidFriendly={form.kidFriendly}
+          />
 
-      <div>
-        <h2>All activities (lista de atividades do API)</h2>
-        
-        {filteredActivities.map((currentActivity) => {
-          return (
-            <div key={currentActivity._id}>
-              <CardList
-                activity={currentActivity.activity}
-                type={currentActivity.type}
-                participants={currentActivity.participants}
-                duration={currentActivity.duration}
-                kidFriendly={currentActivity.kidFriendly}
-                accessibility={currentActivity.accessibility}
-                link={currentActivity.link}
-                view={`/my-activities/view-activity/${currentActivity._id}`}
-                function={location.pathname==="/" ? "fav" : "delete"}
-                id={currentActivity._id}
-              />
-            </div>
-          );
-        })}
+          <div>
+            <Link to="/my-activities">Go to My Favourites</Link>
+          </div>
+        </div>
+        <div className={style.activities}>
+          <div className={style.cards}>
+            <h2>All activities (lista de atividades do API)</h2>
+
+            {filteredActivities.map((currentActivity) => {
+              return (
+                <div key={currentActivity._id}>
+                  <CardList
+                    activity={currentActivity.activity}
+                    type={currentActivity.type}
+                    participants={currentActivity.participants}
+                    duration={currentActivity.duration}
+                    kidFriendly={currentActivity.kidFriendly}
+                    accessibility={currentActivity.accessibility}
+                    link={currentActivity.link}
+                    view={`/my-activities/view-activity/${currentActivity._id}`}
+                    function={location.pathname === "/" ? "fav" : "delete"}
+                    id={currentActivity._id}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
-      
     </div>
   );
 }
