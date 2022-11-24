@@ -76,8 +76,6 @@ export function EditActivity() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    // delete ._id ??? video 18/11 min 1.30
-
     try {
       const response = await axios.put(
         `https://ironrest.cyclic.app/just-do-it/${params.id}`,
