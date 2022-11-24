@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import FormEdit from "../../Components/Form";
 import { propTypes } from "react-bootstrap/esm/Image";
+import style from "./style.module.css"
 
 // pra criar Toast apos de ser redirecionado, video de quarta 16/11 min 2.41 + 17/11 toda
 // so redirect video 16/11 min 2.39
@@ -89,7 +90,8 @@ export function EditActivity() {
   }
 
   return (
-    <>
+    <div className={style.editActivity}>
+      
       <FormEdit
         handleChange={handleChange}
         handleSubmit={handleSubmit}
@@ -179,6 +181,6 @@ export function EditActivity() {
         <Button>Save Changes</Button>
         <Link to="/my-activities">Back to my Activites</Link>
       </form> */}
-    </>
+    </div>
   );
 }

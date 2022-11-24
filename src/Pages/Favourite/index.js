@@ -64,7 +64,7 @@ export function Favourite() {
           );
         })}
       </div>
-      <div>
+      <div className={style.linkButton}>
         <Link to="/">Back to activity list</Link>
       </div>
     </>

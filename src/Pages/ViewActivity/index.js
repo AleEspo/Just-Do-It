@@ -3,6 +3,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import CardList from "../../Components/Cards/CardList";
+import style from "./style.module.css";
 
 export function ViewActivity(props) {
     const params = useParams();
@@ -32,7 +33,7 @@ export function ViewActivity(props) {
     }, []);
 
     return (
-        <div  className="m-3">
+        <div className={style.viewActivity}>
         <CardList
           key={activity._id}
           activity={activity.activity}

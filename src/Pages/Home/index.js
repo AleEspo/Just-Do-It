@@ -192,6 +192,7 @@ export function Home() {
                     accessibility={currentActivity.accessibility}
                     link={currentActivity.link}
                     view={`/my-activities/view-activity/${currentActivity._id}`}
+                    // edit={`/my-activities/edit-activity/${currentActivity._id}`}
                     function={location.pathname === "/" ? "fav" : "delete"}
                     id={currentActivity._id}
                   />
