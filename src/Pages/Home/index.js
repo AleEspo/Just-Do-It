@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { SearchActivity } from "../../Components/SearchActivity";
 import FormEdit from "../../Components/Form";
 import CardList from "../../Components/Cards/CardList";
-import { GenRandom } from "../../Components/Cards/RandomCard";
+import { GenRandom } from "../../Components/Cards/RandomCard - inProgress";
 import { useLocation } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export function Home() {
   const [form, setForm] = useState({
@@ -20,7 +21,8 @@ export function Home() {
     kidFriendly: false,
   });
 
-  console.log(form);
+
+  // TOAST aula 16/11 min 58
 
   // test function to create custom collections based on user IP
 
@@ -75,6 +77,7 @@ export function Home() {
       const response = await axios.post(
         "https://ironrest.cyclic.app/just-do-it",
         { ...form }
+
       );
 
       await axios.post("https://ironrest.cyclic.app/just-do-it-fav");
@@ -90,8 +93,12 @@ export function Home() {
         link: "",
         kidFriendly: false,
       });
+
+      toast.success("Activity criated")
+
     } catch (err) {
       console.log(err);
+      toast.error("Something went wrong")
     }
   }
 
@@ -104,8 +111,10 @@ export function Home() {
         `https://ironrest.cyclic.app/just-do-it-fav`,
         favActivity.data
       );
+      toast.success("Activity added to My Favourites")
     } catch (err) {
       console.log(err);
+      toast.error("Something went wrong")
     }
   }
 
@@ -113,7 +122,6 @@ export function Home() {
   const [filteredActivities, setFilteredActivities] = useState([]);
 
   const location = useLocation()
-  console.log(location)
 
   useEffect(() => {
     async function fetchActivity() {
@@ -139,8 +147,10 @@ export function Home() {
   // }, []);
 
   return (
-    <>
+    <div  className="m-3">
+
       <h1>Just Do It</h1>
+
       <FormEdit
         handleChange={handleChange}
         handleSubmit={handleSubmit}
@@ -152,135 +162,11 @@ export function Home() {
         link={form.link}
         kidFriendly={form.kidFriendly}
       />
-      {/* <div>
-        <h2>Form para adicionar atividades no API - mudar de pagina</h2>
-        <form onSubmit={handleSubmit}>
-          <br />
-          <label htmlFor="input-activity">Activity</label>
-          <input
-            id="input-activity"
-            type="text"
-            name="activity"
-            onChange={handleChange}
-            value={form.activity}
-            placeholder="ex: Learn a new language"
-          />
 
-          <br />
-
-          <label htmlFor="input-type">Type</label>
-          <select
-            id="input-type"
-            name="type"
-            onChange={handleChange}
-            value={form.type}
-          >
-            <option value="education">Education</option>
-            <option value="recreational">Recreational</option>
-            <option value="social">Social</option>
-            <option value="diy">DIY</option>
-            <option vlaue="charity">Charity</option>
-            <option value="cooking">Cooking</option>
-            <option value="relaxation">Relaxation</option>
-            <option value="music">Music</option>
-            <option value="busywork">Busy Work</option>
-          </select>
-       
-
-          <br />
-
-          <label htmlFor="input-participants">Participants</label>
-          <input
-            id="input-participants"
-            type="number"
-            name="participants"
-            onChange={handleChange}
-            value={form.participants}
-          />
-
-          <br />
-
-          <label htmlFor="input-accessibility">Accessibility</label>
-          <select
-            id="input-accessibility"
-            name="accessibility"
-            onChange={handleChange}
-            value={form.accessibility}
-          >
-            <option value="few to no challenges">Few to no challenges</option>
-            <option value="minor challenges">Minor challenges</option>
-            <option value="major challenges">Major challenges</option>
-          </select>
-          
-
-          <br />
-
-          <label htmlFor="input-price">Price</label>
-          <input
-            id="input-price"
-            type="number"
-            name="price"
-            onChange={handleChange}
-            value={form.price}
-          />
-
-          <br />
-
-          <label htmlFor="input-availability">Availability</label>
-          <input
-            id="input-availability"
-            type="number"
-            name="availability"
-            onChange={handleChange}
-            value={form.availability}
-          />
-
-          <br />
-
-          <label htmlFor="input-duration">Duration</label>
-          <select
-            id="input-duration"
-            name="duration"
-            onChange={handleChange}
-            value={form.duration}
-          >
-            <option value="minutes">Minutes</option>
-            <option value="hours">Hours</option>
-            <option value="days">Days</option>
-            <option value="weeks">Weeks</option>
-          </select>
-         
-
-          <br />
-
-          <label htmlFor="input-link">Link</label>
-          <input
-            id="input-link"
-            type="text"
-            name="link"
-            onChange={handleChange}
-            value={form.link}
-          />
-
-          <br />
-
-          <label htmlFor="input-kids">Kid Friendly</label>
-          <input
-            id="input-kids"
-            type="checkbox"
-            name="kidFriendly"
-            onChange={handleChange}
-            value={true}
-          />
-
-          <br />
-
-          <button>Create new Activity</button>
-        </form>
-        <br />
-        <Link to="/my-activities">My Favourites</Link>
+      <div>
+        <Link to="/my-activities">Go to My Favourites</Link>
       </div>
-    */}
+
       <div>
         <h2>Search activity (form para filtrar as atividades)</h2>
         <SearchActivity
@@ -288,8 +174,10 @@ export function Home() {
           allActivities={activities}
         />
       </div>
+
       <div>
         <h2>All activities (lista de atividades do API)</h2>
+        
         {filteredActivities.map((currentActivity) => {
           return (
             <div key={currentActivity._id}>
@@ -309,40 +197,7 @@ export function Home() {
           );
         })}
       </div>
-      {/* {useEffect(() => {
-        function activityList() {
-          return (
-            <>
-              <div>
-                <h2>All activities (lista de atividades do API)</h2>
-                {filteredActivities.map((currentActivity) => {
-                  return (
-                    <div key={currentActivity._id}>
-                      <h4>{currentActivity.activity}</h4>
-                      <p>{currentActivity.type}</p>
-                      <p>{currentActivity.paticipants}</p>
-                      <p>{currentActivity.accessibility}</p>
-                      <p>{currentActivity.price}</p>
-                      <p>
-                        Kids Friendly:{" "}
-                        {currentActivity.kidFriendly ? "Yes" : "No  "}
-                      </p>
-                      <button
-                        onClick={() => {
-                          myActivities.push(currentActivity);
-                        }}
-                      >
-                        Add to my activities
-                      </button>
-                    </div>
-                  );
-                })}
-              </div>
-            </>
-          );
-        }
-        activityList();
-      }, [activities])} */}
-    </>
+      
+    </div>
   );
 }

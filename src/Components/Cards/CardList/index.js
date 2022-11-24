@@ -3,6 +3,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import {useLocation} from "react-router-dom"
 import axios from "axios"
+import toast from "react-hot-toast"
 
 
 function CardList(props) {
@@ -20,8 +21,10 @@ function CardList(props) {
         `https://ironrest.cyclic.app/just-do-it-fav`,
         favActivity.data
       );
+      toast.success("Activity added to My Favourites")
     } catch (err) {
       console.log(err);
+      toast.error("Something went wrong")
     }
   }
 
@@ -30,27 +33,37 @@ function CardList(props) {
       console.log(id)
       await axios.delete(`https://ironrest.cyclic.app/just-do-it-fav/${id}`);
       props.setIsDeleted(true);
+      toast.success("Note deleted")
     } catch (err) {
       console.log(err);
+      toast.error("Something went wrong")
     }
   }
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "18rem" }} className="m-3">
       <Card.Body>
         <Card.Title>{props.activity}</Card.Title>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        <ListGroup.Item>Type: {props.type}</ListGroup.Item>
+        <ListGroup.Item>Type: {props.type ? props.type : "/"}</ListGroup.Item>
         <ListGroup.Item>Participants: {props.participants}</ListGroup.Item>
         <ListGroup.Item>Duration: {props.duration}</ListGroup.Item>
         <ListGroup.Item>Kids Friendly: {props.kidFriendly ? "yes" : "no"} </ListGroup.Item>
         <ListGroup.Item>Accessibility: {props.accessibility}</ListGroup.Item>
-        <ListGroup.Item>Link: {props.link}</ListGroup.Item>
+        <ListGroup.Item>Link: {props.link ? props.link : "/"}</ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <Button variant="primary" href={props.view}>View</Button>
-        <Button variant="success" href={props.edit}>Edit</Button>
+          <Button variant="primary" href={props.view}>View</Button>
+          <Button variant="success" href={props.edit}>Edit</Button>
+        {/* {props.function=== "fav" ? ()=> { return (
+          <Button variant="primary" href={props.view}>View</Button>
+            )} : ""
+            }
+        {props.function=== "fav" ? "" : ()=> { return (
+          <Button variant="success" href={props.edit}>Edit</Button>
+          )}
+          } */}
         <Button variant="danger" onClick={()=>{
           if(props.function==="fav"){
             addToFavourite(props.id)
