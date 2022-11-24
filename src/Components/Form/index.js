@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 
 function FormEdit(props) {
   return (
-    <Form onSubmit={props.handleSubmit} style={{ width: "18rem" }}>
+    <Form onSubmit={props.handleSubmit} style={{ width: '18rem' }}  className="m-3">
       <Form.Group className="mb-3" controlId="input-activity">
         <Form.Label>Activity</Form.Label>
         <Form.Control

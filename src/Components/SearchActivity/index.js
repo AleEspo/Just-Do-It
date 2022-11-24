@@ -1,3 +1,5 @@
+import style from "./style.module.css";
+
 export function SearchActivity(props) {
     function handleFilter(e) {
       props.filteredFunction((prevState) => {

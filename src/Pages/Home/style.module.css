@@ -1,0 +1,31 @@
+.home {
+    height: 950px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 950px;
+    justify-content: center;
+    gap: 40px;
+}
+
+.activities {
+    height: 950px;
+    overflow: scroll;
+}
+
+h1 {
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

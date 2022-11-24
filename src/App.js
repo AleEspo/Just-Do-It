@@ -7,6 +7,7 @@ import { Favourite } from "./Pages/Favourite";
 import { ViewActivity } from "./Pages/ViewActivity";
 import { EditActivity } from "./Pages/EditActivity"
 import { Page404 } from "./Pages/Page404"
+import {Toaster} from "react-hot-toast"
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         lineHeight: 1.5,
       }}
     >
+    <div className="App">
+    < Toaster/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/my-activities" element={<Favourite />} />
@@ -32,7 +35,8 @@ function App() {
         />
         <Route path="*" element={<Page404 />} />
       </Routes>
-    </div>
+      </div>
+      </div>
   );
 }
 
