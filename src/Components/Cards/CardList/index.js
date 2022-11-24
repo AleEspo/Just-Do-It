@@ -1,11 +1,39 @@
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
-import {useParams} from "react-router-dom"
+import {useLocation} from "react-router-dom"
+import axios from "axios"
 
 
 function CardList(props) {
-  let {path} = useParams()
+  let location = useLocation()
+
+  async function addToFavourite(id) {
+    try {
+      const favActivity = await axios.get(
+        `https://ironrest.cyclic.app/just-do-it/${id}`
+      );
+
+      delete favActivity.data._id
+
+      await axios.post(
+        `https://ironrest.cyclic.app/just-do-it-fav`,
+        favActivity.data
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function handleDelete(id) {
+    try {
+      console.log(id)
+      await axios.delete(`https://ironrest.cyclic.app/just-do-it-fav/${id}`);
+      props.setIsDeleted(true);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <Card style={{ width: "18rem" }}>
@@ -24,12 +52,12 @@ function CardList(props) {
         <Button variant="primary" href={props.view}>View</Button>
         <Button variant="success" href={props.edit}>Edit</Button>
         <Button variant="danger" onClick={()=>{
-          if(path==="/"){
-            return props.fav
+          if(props.function==="fav"){
+            addToFavourite(props.id)
           } else {
-            return props.delete
+            handleDelete(props.id)
           }
-        }}>Delete</Button>
+        }}>{props.function==="fav" ? "Add to Fav" : "Delete"}</Button>
       </Card.Body>
     </Card>
   );

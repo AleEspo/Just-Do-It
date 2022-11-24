@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CardList from "../../Components/Cards/CardList";
+import {useLocation} from "react-router-dom"
 
 export function Favourite() {
   const [activities, setActivities] = useState([]);
   const [isDeleted, setIsDeleted] = useState(false);
+  const location = useLocation()
 
   useEffect(() => {
     async function fetchActivity() {
@@ -14,9 +16,7 @@ export function Favourite() {
         const response = await axios.get(
           "https://ironrest.cyclic.app/just-do-it-fav"
         );
-
         setActivities(response.data);
-        setIsDeleted(false); // seria melhor separar o setState e o param que o useEffect està olhando criando outro useEffect
       } catch (err) {
         console.log(err);
       }
@@ -25,11 +25,16 @@ export function Favourite() {
     fetchActivity();
   }, [isDeleted]);
 
+
+  useEffect(()=>{
+    setIsDeleted(false)
+  }, [activities])
+
   // toast "Are you sure you want to delete?" min 2.37 pula pra -> 2.45 aula 18/11 sexta
 
   async function handleDelete(id) {
     try {
-      axios.delete(`https://ironrest.cyclic.app/just-do-it/${id}`);
+      axios.delete(`https://ironrest.cyclic.app/just-do-it-fav/${id}`);
       setIsDeleted(true);
     } catch (err) {
       console.log(err);
@@ -43,6 +48,7 @@ export function Favourite() {
       {activities.map((currentActivity) => {
         return (
           <CardList
+            key={currentActivity._id}
             activity={currentActivity.activity}
             type={currentActivity.type}
             participants={currentActivity.participants}
@@ -52,9 +58,9 @@ export function Favourite() {
             link={currentActivity.link}
             view={`/my-activities/view-activity/${currentActivity._id}`}
             edit={`/my-activities/edit-activity/${currentActivity._id}`}
-            delete={() => {
-              handleDelete(currentActivity._id);
-            }}
+            setIsDeleted={setIsDeleted}
+            function={location.pathname==="/" ? "fav" : "delete"}
+            id={currentActivity._id}
           />
           // <div key={currentActivity._id}>
           //   <h4>{currentActivity.activity}</h4>

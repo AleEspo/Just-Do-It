@@ -5,6 +5,7 @@ import { SearchActivity } from "../../Components/SearchActivity";
 import FormEdit from "../../Components/Form";
 import CardList from "../../Components/Cards/CardList";
 import { GenRandom } from "../../Components/Cards/RandomCard";
+import { useLocation } from "react-router-dom";
 
 export function Home() {
   const [form, setForm] = useState({
@@ -111,15 +112,16 @@ export function Home() {
   const [activities, setActivities] = useState([]);
   const [filteredActivities, setFilteredActivities] = useState([]);
 
+  const location = useLocation()
+  console.log(location)
+
   useEffect(() => {
     async function fetchActivity() {
       try {
         const response = await axios.get(
           "https://ironrest.cyclic.app/just-do-it"
         );
-
-        setActivities(response.data);
-        setFilteredActivities(response.data);
+        setActivities(response.data.reverse());
       } catch (err) {
         console.log(err);
       }
@@ -129,8 +131,12 @@ export function Home() {
   }, []);
 
   useEffect(() => {
-    <GenRandom />;
-  }, []);
+      setFilteredActivities(activities);
+  }, [activities]);
+
+  // useEffect(() => {
+  //   <GenRandom />;
+  // }, []);
 
   return (
     <>
@@ -283,26 +289,22 @@ export function Home() {
         />
       </div>
       <div>
-        <button>Suggest a random activity</button>
-      </div>
-      <div>
         <h2>All activities (lista de atividades do API)</h2>
         {filteredActivities.map((currentActivity) => {
           return (
             <div key={currentActivity._id}>
-            <CardList
-              activity={currentActivity.activity}
-              type={currentActivity.type}
-              participants={currentActivity.participants}
-              duration={currentActivity.duration}
-              kidFriendly={currentActivity.kidFriendly}
-              accessibility={currentActivity.accessibility}
-              link={currentActivity.link}
-              view={`/my-activities/view-activity/${currentActivity._id}`}
-              fav={() => {
-                addToFavourite(currentActivity._id);
-              }}
-            />
+              <CardList
+                activity={currentActivity.activity}
+                type={currentActivity.type}
+                participants={currentActivity.participants}
+                duration={currentActivity.duration}
+                kidFriendly={currentActivity.kidFriendly}
+                accessibility={currentActivity.accessibility}
+                link={currentActivity.link}
+                view={`/my-activities/view-activity/${currentActivity._id}`}
+                function={location.pathname==="/" ? "fav" : "delete"}
+                id={currentActivity._id}
+              />
             </div>
           );
         })}
