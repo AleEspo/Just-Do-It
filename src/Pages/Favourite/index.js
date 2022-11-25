@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import CardList from "../../Components/Cards/CardList";
 import { useLocation } from "react-router-dom"
 import style from "./style.module.css";
-import Button  from "react-bootstrap/Button";
-
+import Button from "react-bootstrap/Button";
 
 export function Favourite() {
   const [activities, setActivities] = useState([]);
