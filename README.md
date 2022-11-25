@@ -1,3 +1,7 @@
+# Just Do It - Lucas Carvalho, Alessandro Esposito Brescia
+
+## Project #2 Guidelines: React Web Application
+
 - ## Introduction  
     
   Now that you are more familiar with React, you can make a complete frontend for your 2nd project.You’ll be building a **React** app, which means you’ll learn/practice about what it takes to make a functional application from the ground up yourself.  
