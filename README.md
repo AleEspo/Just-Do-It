@@ -1,5 +1,7 @@
 # Just Do It - Lucas Carvalho, Alessandro Esposito Brescia
 
+A simple web app to help you find something better to do
+
 ## Project #2 Guidelines: React Web Application
 
 - ## Introduction  
