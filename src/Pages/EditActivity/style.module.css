@@ -1,4 +1,10 @@
 .editActivity {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+}
+
+.linkButton {
+    text-align: center;
+    margin: 30px;
 }

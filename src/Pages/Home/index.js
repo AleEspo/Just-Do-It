@@ -161,7 +161,7 @@ export function Home() {
       </div>
       <div className={style.container}>
         <div>
-          <h2>Add new</h2>
+          <h2>Add new activity</h2>
           <FormEdit
             handleChange={handleChange}
             handleSubmit={handleSubmit}
@@ -175,17 +175,17 @@ export function Home() {
           />
 
           <div>
-            <Button className={style.button} variant="info">
-              <Link className={style.link} to="/my-activities">
-                Go to My Favourites
-              </Link>
-            </Button>
+            <Link className={style.link} to="/my-activities">
+              <Button className={style.button} variant="info">
+                  Go to My Favourites
+              </Button>
+            </Link>
           </div>
         </div>
 
         <div>
           <div>
-            <h2>All activities (lista de atividades do API)</h2>
+            <h2>All activities</h2>
           </div>
           <div className={style.cards}>
             {filteredActivities.map((currentActivity) => {
