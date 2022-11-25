@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import CardList from "../../Components/Cards/CardList";
 import style from "./style.module.css";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 export function ViewActivity(props) {
     const params = useParams();
@@ -39,7 +39,7 @@ export function ViewActivity(props) {
     }, []);
 
     return (
-        <div className={style.viewActivity}>
+      <div className={style.viewActivity}>
         <CardList
           key={activity._id}
           activity={activity.activity}
@@ -51,7 +51,7 @@ export function ViewActivity(props) {
           link={activity.link}
           view={`/my-activities/view-activity/${activity._id}`}
           edit={`/my-activities/edit-activity/${activity._id}`}
-          function={location.pathname==="/" ? "fav" : "delete"}
+          function={location.pathname === "/" ? "fav" : "delete"}
           id={activity._id}
         />
         <div className={style.linkButton}>
