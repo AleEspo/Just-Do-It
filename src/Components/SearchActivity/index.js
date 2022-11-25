@@ -17,7 +17,7 @@ export function SearchActivity(props) {
   
     return (
       <div>
-        <input type="text" onChange={handleFilter} />
+        <input type="text" onChange={handleFilter} placeholder="ex: Learn a new language"/>
       </div>
     );
   }

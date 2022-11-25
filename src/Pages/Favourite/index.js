@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import CardList from "../../Components/Cards/CardList";
 import { useLocation } from "react-router-dom"
 import style from "./style.module.css";
-import Button from "react-bootstrap/Button";
+import Button  from "react-bootstrap/Button";
+
 
 export function Favourite() {
   const [activities, setActivities] = useState([]);
@@ -66,11 +67,11 @@ export function Favourite() {
         })}
       </div>
       <div className={style.buttonContainer}>
-        <Button className={style.button} variant="info">
-          <Link className={style.link} to="/">
-            Back to activity list
+        <Link className={style.link} to="/">
+              <Button className={style.button} variant="info">
+                  Back to activity list
+              </Button>
           </Link>
-        </Button>
       </div>
     </>
   );
