@@ -11,21 +11,29 @@
     flex-direction: row;
     height: 950px;
     justify-content: center;
-    gap: 40px;
+    gap: 80px;
+    margin-top:30px;
 }
 
-.activities {
-    height: 950px;
-    overflow: scroll;
-}
-
-h1 {
+h1  {
     text-align: center;
+    padding-top: 20px;
+
 }
 
 .cards {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 950px;
+    overflow: scroll;
 }
 
+.link {
+    text-decoration: none;
+    color: white;    
+}
+
+.button {
+    margin-top: 15px;
+}

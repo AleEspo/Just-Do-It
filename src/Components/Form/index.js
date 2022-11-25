@@ -2,10 +2,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import style from "./style.module.css"
 
 function FormEdit(props) {
   return (
-    <Form onSubmit={props.handleSubmit} style={{ width: '18rem' }}  className="m-3">
+    <Form onSubmit={props.handleSubmit} style={{ width: '18rem' }}  className={style.form}>
       <Form.Group className="mb-3" controlId="input-activity">
         <Form.Label>Activity</Form.Label>
         <Form.Control
