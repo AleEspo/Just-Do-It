@@ -11,6 +11,11 @@ export function ViewActivity(props) {
 
     const [activity, setActivities] = useState({})
 
+
+    // SE VEM DO HOME -> add ID to just-do-it
+    // SE VEM DO FAV -> add ID to -fav
+    // O ID JA TA CERTO, TEM QUE DEFINIR EM QUAL API VAI! CONTEXT?
+
     useEffect(() => {
         async function fetchActivity() {
             try {
