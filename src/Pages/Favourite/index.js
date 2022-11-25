@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom"
 import style from "./style.module.css";
 import Button  from "react-bootstrap/Button";
 
+
 export function Favourite() {
   const [activities, setActivities] = useState([]);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -65,7 +66,7 @@ export function Favourite() {
           );
         })}
       </div>
-      <div className={style.linkButton}>
+      <div className={style.buttonContainer}>
         <Link className={style.link} to="/">
               <Button className={style.button} variant="info">
                   Back to activity list

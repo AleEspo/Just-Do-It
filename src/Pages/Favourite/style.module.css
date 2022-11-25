@@ -4,7 +4,18 @@
     flex-wrap: wrap;
 }
 
-.linkButton {
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.button {
+    margin-top: 15px;
     text-align: center;
-    margin: 30px;
+}
+
+.buttonContainer{
+    text-align: center;
+    justify-content: center;
+    margin-top: 20px;
 }
