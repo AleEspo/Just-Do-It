@@ -8,6 +8,7 @@ import { GenRandom } from "../../Components/Cards/RandomCard - inProgress";
 import { useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import style from "./style.module.css";
+import  Button  from "react-bootstrap/Button";
 
 export function Home() {
   const [form, setForm] = useState({
@@ -151,15 +152,16 @@ export function Home() {
     <div className={style.home}>
       <h1>Just Do It</h1>
       <div>
-        <h2>Search activity (form para filtrar as atividades)</h2>
+        <h2>Search for an activity and just do it</h2>
         <SearchActivity
           filteredFunction={setFilteredActivities}
           allActivities={activities}
-          className={style.SearchActivity}
+          className={style.searchActivity}
         />
       </div>
       <div className={style.container}>
         <div>
+          <h2>Add new</h2>
           <FormEdit
             handleChange={handleChange}
             handleSubmit={handleSubmit}
@@ -173,13 +175,19 @@ export function Home() {
           />
 
           <div>
-            <Link to="/my-activities">Go to My Favourites</Link>
+            <Button className={style.button} variant="info">
+              <Link className={style.link} to="/my-activities">
+                Go to My Favourites
+              </Link>
+            </Button>
           </div>
         </div>
-        <div className={style.activities}>
-          <div className={style.cards}>
-            <h2>All activities (lista de atividades do API)</h2>
 
+        <div>
+          <div>
+            <h2>All activities (lista de atividades do API)</h2>
+          </div>
+          <div className={style.cards}>
             {filteredActivities.map((currentActivity) => {
               return (
                 <div key={currentActivity._id}>

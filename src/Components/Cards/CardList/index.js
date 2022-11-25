@@ -42,7 +42,7 @@ function CardList(props) {
   }
 
   return (
-    <Card style={{ width: "18rem" }} className="m-3">
+    <Card style={{ width: "18rem" }} className={style.card}>
       <Card.Body>
         <Card.Title>{props.activity}</Card.Title>
       </Card.Body>
