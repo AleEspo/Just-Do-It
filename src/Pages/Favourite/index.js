@@ -65,8 +65,12 @@ export function Favourite() {
           );
         })}
       </div>
-      <div className={style.linkButton}>
-        <Link to="/">Back to activity list</Link>
+      <div className={style.buttonContainer}>
+        <Link className={style.link} to="/">
+              <Button className={style.button} variant="info">
+                  Back to activity list
+              </Button>
+          </Link>
       </div>
     </>
   );

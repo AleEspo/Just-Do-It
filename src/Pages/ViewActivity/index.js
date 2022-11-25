@@ -68,6 +68,6 @@ export function ViewActivity(props) {
           </Button>
         </Link>
       </div>
-        </div>
+     </div>
     )
 }
