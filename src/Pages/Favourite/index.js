@@ -32,14 +32,6 @@ export function Favourite() {
     setIsDeleted(false)
   }, [activities])
 
-  async function handleDelete(id) {
-    try {
-      axios.delete(`https://ironrest.cyclic.app/just-do-it-fav/${id}`);
-      setIsDeleted(true);
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
   return (
     <>
@@ -61,6 +53,7 @@ export function Favourite() {
               setIsDeleted={setIsDeleted}
               function={location.pathname === "/" ? "fav" : "delete"}
               id={currentActivity._id}
+              origin={location.pathname}
             />
           );
         })}

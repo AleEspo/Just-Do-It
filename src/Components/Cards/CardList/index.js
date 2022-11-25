@@ -55,23 +55,21 @@ function CardList(props) {
         <ListGroup.Item>Link: {props.link ? props.link : "/"}</ListGroup.Item>
       </ListGroup>
       <Card.Body className={style.button}>
-          <Button variant="primary" href={props.view}>View</Button>
-          <Button variant="success" href={props.edit}>Edit</Button>
+          {props.origin==="viewPage" ? null : <Button variant="primary" href={props.view}>View</Button>}
+          {/* <Button variant="success" href={props.edit}>Edit</Button> */}
         {/* {props.function=== "fav" ? ()=> { return (
           <Button variant="primary" href={props.view}>View</Button>
             )} : ""
-            }
-        {props.function=== "fav" ? "" : ()=> { return (
-          <Button variant="success" href={props.edit}>Edit</Button>
-          )}
-          } */}
-        <Button variant="danger" onClick={()=>{
+            } */}
+        {props.function=== "fav" || props.origin==="viewPage" ? null : <Button variant="success" href={props.edit}>Edit</Button>}
+        {props.origin==="viewPage" ? null : <Button variant="danger" onClick={()=>{
           if(props.function==="fav"){
             addToFavourite(props.id)
           } else {
             handleDelete(props.id)
           }
         }}>{props.function==="fav" ? "Add to Fav" : "Delete"}</Button>
+        }
       </Card.Body>
     </Card>
   );
