@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import CardList from "../../Components/Cards/CardList";
 import style from "./style.module.css";
+import { Button } from "react-bootstrap";
 
 export function ViewActivity(props) {
     const params = useParams();
@@ -53,17 +54,20 @@ export function ViewActivity(props) {
           function={location.pathname==="/" ? "fav" : "delete"}
           id={activity._id}
         />
-
-            {/* <h1>{activity.activity}</h1>
-            <p>Type: {activity.type}</p>
-            <p>Participants: {activity.participants}</p>
-            <p>Duration: {activity.duration}</p>
-            <p>Kids Friendly: {activity.kidFriendly ? "Yes" : "No" }</p>
-            <Link to="/">Go to Activity list</Link>
-            <Link to="/my-activities">Back to My Favourites</Link> */}
-
-            <Link to="/">Go to Activity list</Link>
-            <Link to="/my-activities">Back to My Favourites</Link>
+        <div className={style.linkButton}>
+            <Link className={style.link} to="/">
+                <Button className={style.button} variant="info">
+                    Back to activity list
+                </Button>
+            </Link>
+        </div>
+        <div className={style.linkButton}>
+        <Link className={style.link} to="/my-activities">
+          <Button className={style.button} variant="info">
+            Back to My Favourites
+          </Button>
+        </Link>
+      </div>
         </div>
     )
 }
