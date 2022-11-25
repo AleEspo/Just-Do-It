@@ -21,15 +21,13 @@ export function ViewActivity(props) {
     useEffect(() => {
         async function fetchActivity() {
             try {
-                let response
-                if (await axios.get(`https://ironrest.cyclic.app/just-do-it/${params.id}`)){
-                    response = await axios.get(`https://ironrest.cyclic.app/just-do-it/${params.id}`
-                );} else {
-                    response = await axios.get(`https://ironrest.cyclic.app/just-do-it-fav/${params.id}`
-                );
-                }
-            
+                let response = await axios.get(`https://ironrest.cyclic.app/just-do-it/${params.id}`)
+                if (response.data===null){
+                    let fav = await axios.get(`https://ironrest.cyclic.app/just-do-it-fav/${params.id}`)
+                    setActivities(fav.data)
+                } else {
                 setActivities(response.data);
+                }
             } catch (err) {
                 console.log(err)
             }
@@ -53,6 +51,7 @@ export function ViewActivity(props) {
           edit={`/my-activities/edit-activity/${activity._id}`}
           function={location.pathname === "/" ? "fav" : "delete"}
           id={activity._id}
+          origin={"viewPage"}
         />
         <div className={style.linkButton}>
             <Link className={style.link} to="/">

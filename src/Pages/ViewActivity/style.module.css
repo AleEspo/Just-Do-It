@@ -1,6 +1,7 @@
 .viewActivity {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
 
@@ -21,6 +22,7 @@
 
 .buttonContainer {
     text-align: center;
+    align-items: center;
     justify-content: center;
     margin-top: 20px;
 }
